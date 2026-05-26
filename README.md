@@ -1,2 +1,6 @@
-# API_Gesti-n_Productos_Y_Pedidos
-API REST para e-commerce desarrollada con Spring Boot, que gestiona usuarios, productos, categorías y pedidos, con seguridad JWT, control de stock y arquitectura en capas.
+# EN PROCESO....
+
+----
+# API-E-commerce_Pro_Avanzado
+
+API-E-commerce_Pro_Avanzado es una API REST de e-commerce desarrollada con Spring Boot, que implementa autenticación JWT, control de stock transaccional, manejo global de errores, DTOs, paginación, filtros dinámicos y arquitectura profesional orientada a escalabilidad, seguridad y buenas prácticas backend.
