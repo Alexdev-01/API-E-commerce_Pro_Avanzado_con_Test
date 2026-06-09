@@ -5,6 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.tiendaonline.gestion.dto.auth.AuthRequest;
 import com.tiendaonline.gestion.dto.auth.AuthResponse;
 import com.tiendaonline.gestion.dto.auth.LoginRequest;
 import com.tiendaonline.gestion.dto.auth.RegisterRequest;
@@ -13,6 +14,8 @@ import com.tiendaonline.gestion.model.Usuario;
 import com.tiendaonline.gestion.repository.UsuarioRepository;
 import com.tiendaonline.gestion.security.jwt.JwtService;
 import com.tiendaonline.gestion.service.AuthService;
+
+import jakarta.validation.Valid;
 
 @Service	// Marca esta clase como un servicio de Spring, lo que permite su gestión y uso en otras partes de la aplicación
 public class AuthServiceImpl implements AuthService {
@@ -57,8 +60,9 @@ public class AuthServiceImpl implements AuthService {
 		return new AuthResponse(token);
 	}
 
+
 	@Override
-	public AuthResponse login(LoginRequest request) {
+	public AuthResponse login(@Valid AuthRequest request) {
 		
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 		
@@ -73,7 +77,6 @@ public class AuthServiceImpl implements AuthService {
 		);
 		
 		return new AuthResponse(token);
-		
 	}
 
 }
