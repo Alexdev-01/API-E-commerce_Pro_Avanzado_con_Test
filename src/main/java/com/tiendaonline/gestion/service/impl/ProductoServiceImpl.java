@@ -7,11 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.tiendaonline.gestion.model.Categoria;
 import com.tiendaonline.gestion.model.Producto;
+import com.tiendaonline.gestion.repository.CategoriaRepository;
 import com.tiendaonline.gestion.repository.ProductoRepository;
 import com.tiendaonline.gestion.service.ProductoService;
 import org.springframework.stereotype.Service;
 
+import com.tiendaonline.gestion.dto.producto.ProductoRequest;
 import com.tiendaonline.gestion.dto.producto.ProductoResponse;
 import com.tiendaonline.gestion.exception.ResourceNotFoundException;
 
@@ -22,13 +25,25 @@ import com.tiendaonline.gestion.exception.ResourceNotFoundException;
 public class ProductoServiceImpl implements ProductoService{
 
 	private final ProductoRepository productoRepository;
+	private final CategoriaRepository categoriaRepository;
 
-	public ProductoServiceImpl(ProductoRepository productoRepository) {
+	public ProductoServiceImpl(ProductoRepository productoRepository, CategoriaRepository categoriaRepository) {
 		this.productoRepository = productoRepository;
+		this.categoriaRepository = categoriaRepository;
 	}
 
 	@Override
-	public Producto crearProducto(Producto producto) {
+	public Producto crearProducto(ProductoRequest request) {
+		Categoria categoria = categoriaRepository.findById(request.getCategoriaId())
+				.orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada con id: " + request.getCategoriaId()));
+
+		Producto producto = new Producto();
+		producto.setNombre(request.getNombre());
+		producto.setDescripcion(request.getDescripcion());
+		producto.setPrecio(request.getPrecio());
+		producto.setStock(request.getStock());
+		producto.setCategoria(categoria);
+
 		return productoRepository.save(producto);
 	}
 
@@ -95,6 +110,8 @@ public class ProductoServiceImpl implements ProductoService{
 		Page<Producto> producto = productoRepository.filtrarProductos(categoriaId, precioMin, precioMax, PageRequest.of(page, size));
 		return producto.map(this::mapToResponse);
 	}
+
+
 	
 	
 	
