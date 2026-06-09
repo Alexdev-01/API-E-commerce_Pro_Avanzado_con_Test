@@ -3,6 +3,7 @@ package com.tiendaonline.gestion.service.impl;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.tiendaonline.gestion.dto.pedido.CrearPedidoRequest;
@@ -58,7 +59,7 @@ public class PedidoServiceImpl implements PedidoService {
 	@Override
 	@Transactional	// Asegura que todas las operaciones dentro de este método se ejecuten en una sola transacción
 	// Método para crear un nuevo pedido a partir de una solicitud y el nombre de usuario del cliente
-	public Pedido crearPedido(CrearPedidoRequest request, String username) {
+	public ResponseEntity<PedidoResponse> crearPedido(CrearPedidoRequest request, String username) {
 		
 		//valida extra
 		if (request.getItems() == null || request.getItems().isEmpty()) {
@@ -98,7 +99,8 @@ public class PedidoServiceImpl implements PedidoService {
 		
 		pedido.setTotal(total);
 		
-		return pedidoRepository.save(pedido);
+		Pedido pedidoGuardado = pedidoRepository.save(pedido);
+		return ResponseEntity.ok(mapToResponse(pedidoGuardado));
 	}
 	
 	// Método para obtener un pedido por su ID y mapearlo a una respuesta DTO
