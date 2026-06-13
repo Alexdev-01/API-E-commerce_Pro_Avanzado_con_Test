@@ -7,6 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.tiendaonline.gestion.model.Categoria;
 import com.tiendaonline.gestion.model.Producto;
 import com.tiendaonline.gestion.repository.CategoriaRepository;
@@ -43,6 +46,8 @@ public class ProductoServiceImpl implements ProductoService{
 		producto.setPrecio(request.getPrecio());
 		producto.setStock(request.getStock());
 		producto.setCategoria(categoria);
+		
+		log.info("Creando producto correctamente: {}", request.getNombre());
 
 		return productoRepository.save(producto);
 	}
@@ -63,6 +68,8 @@ public class ProductoServiceImpl implements ProductoService{
 		existente.setStock(producto.getStock());
 		existente.setCategoria(producto.getCategoria());
 
+		log.info("Actualizado producto correctamente: {}", existente.getNombre());
+		
 		return productoRepository.save(existente);
 	}
 
@@ -71,12 +78,18 @@ public class ProductoServiceImpl implements ProductoService{
 		Producto producto = obtenerEntidadPorId(id);
 		producto.setActivo(false); 
 		productoRepository.save(producto);
+		
+		log.info("Eliminado producto correctamente: {}", producto.getNombre());
+
 	}
 
 	@Override
 	public ProductoResponse obtenerPorId(Long id) {
 		Producto producto = productoRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado con id: " + id));
+		
+		log.info("Obtener producto correctamente: {}", producto.getNombre());
+
 		return mapToResponse(producto);
 	}
 
@@ -112,7 +125,8 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 
 
-	
+	private static final Logger log =
+			LoggerFactory.getLogger(ProductoServiceImpl.class);
 	
 	
 	
