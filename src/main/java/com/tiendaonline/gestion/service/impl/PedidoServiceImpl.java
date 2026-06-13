@@ -6,6 +6,9 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.tiendaonline.gestion.dto.pedido.CrearPedidoRequest;
 import com.tiendaonline.gestion.dto.pedido.ItemPedidoRequest;
 import com.tiendaonline.gestion.dto.pedido.ItemPedidoResponse;
@@ -38,7 +41,9 @@ public class PedidoServiceImpl implements PedidoService {
 		this.productoRepository = productoRepository;
 		this.usuarioRepository = usuarioRepository;
 	}
-
+	
+	private static final Logger log = LoggerFactory.getLogger(PedidoServiceImpl.class);
+	
 	
 	@Override
 	public Pedido crearPedido(Pedido pedido) {
@@ -73,15 +78,24 @@ public class PedidoServiceImpl implements PedidoService {
 		
 		BigDecimal total = BigDecimal.ZERO;
 		
+		log.info("Iniciando creación de pedido para usuario: {}", usuario.getUsername());
+		
 		for (ItemPedidoRequest item : request.getItems()) {
-			Producto producto = productoRepository.findById(item.getProductoId()).orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado"));
+			log.info("Procesando producto ID: {} - Cantidad: {}", item.getProductoId(), item.getCantidad());
+			Producto producto = productoRepository.findById(item.getProductoId()).orElseThrow(() -> {
+				log.error("Producto no encontrado ID: {}", item.getProductoId());
+				return new ResourceNotFoundException("Producto no encontrado");
+			});
 			
 			if (producto.getStock() < item.getCantidad()) {
+				log.warn("Stock insuficiente para producto ID: {}. Stock actual: {}, solicitado: {}",producto.getId(),producto.getStock(),item.getCantidad());
 				throw new StockInsuficienteException("Stock insuficiente para: " + producto.getNombre());
 			}
 			
 			//Reducir Stock del producto
 			producto.setStock(producto.getStock() - item.getCantidad());
+			
+			log.info("Stock actualizado para producto ID: {}. Nuevo stock: {}",producto.getId(),producto.getStock());
 			
 			DetallePedido detalle = new DetallePedido();
 			
@@ -99,7 +113,9 @@ public class PedidoServiceImpl implements PedidoService {
 		
 		pedido.setTotal(total);
 		
+		log.info("Total del pedido calculado: {}", total);
 		Pedido pedidoGuardado = pedidoRepository.save(pedido);
+		log.info("Pedido creado correctamente. ID Pedido: {} - Usuario: {}",pedido.getId(),usuario.getUsername());
 		return ResponseEntity.ok(mapToResponse(pedidoGuardado));
 	}
 	
