@@ -11,11 +11,13 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.tiendaonline.gestion.dto.pedido.CrearPedidoRequest;
 import com.tiendaonline.gestion.dto.pedido.ItemPedidoRequest;
+import com.tiendaonline.gestion.exception.ResourceNotFoundException;
 import com.tiendaonline.gestion.exception.StockInsuficienteException;
 import com.tiendaonline.gestion.model.Pedido;
 import com.tiendaonline.gestion.model.Producto;
@@ -23,6 +25,7 @@ import com.tiendaonline.gestion.model.Usuario;
 import com.tiendaonline.gestion.repository.PedidoRepository;
 import com.tiendaonline.gestion.repository.ProductoRepository;
 import com.tiendaonline.gestion.repository.UsuarioRepository;
+import com.tiendaonline.gestion.service.impl.PedidoServiceImpl;
 
 @ExtendWith(MockitoExtension.class) // Anotación de JUnit 5 para habilitar la extensión de Mockito en esta clase de prueba
 public class PedidoServiceImplTest {
@@ -37,10 +40,11 @@ public class PedidoServiceImplTest {
 	@Mock
 	private UsuarioRepository usuarioRepository;
 	
-	@Mock
-	private PedidoService pedidoService;
+	@InjectMocks // Anotación de Mockito para inyectar los mocks en la clase bajo prueba. Inyecta ese repositorio falso en el service.
+	private PedidoServiceImpl  pedidoService;
 	
 	
+	//test Stock insuficiente exception
 	@Test
 	void deberiaLanzarStockInsuficienteException() {
 		
@@ -75,6 +79,36 @@ public class PedidoServiceImplTest {
 		verify(pedidoRepository, never()).save(any(Pedido.class));
 	}
 	
+	
+	//test producto inexistente exception
+	@Test
+	void deberiaLanzarResourceNotFoundException() {
+		
+		// Arrange
+		Usuario usuario = new Usuario();
+		usuario.setUsername("cliente1");
+		
+		ItemPedidoRequest item = new ItemPedidoRequest();
+		item.setProductoId(99L);
+		item.setCantidad(1);
+		
+		CrearPedidoRequest request = new CrearPedidoRequest();
+		request.setItems(List.of(item));
+		
+		when(usuarioRepository.findByUsername("cliente1"))
+			.thenReturn(Optional.of(usuario));
+		
+		when(productoRepository.findById(99L))
+			.thenReturn(Optional.empty());
+		
+		// Act + Assert
+		assertThrows(
+				ResourceNotFoundException.class,
+				() -> pedidoService.crearPedido(request, "cliente1"));
+		
+		// Verify
+		verify(pedidoRepository, never()).save(any(Pedido.class));
+	}
 	
 	
 }
