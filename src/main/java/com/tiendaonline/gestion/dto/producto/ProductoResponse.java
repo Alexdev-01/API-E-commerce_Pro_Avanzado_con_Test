@@ -22,6 +22,10 @@ public class ProductoResponse {
 		this.stock = stock;
 		this.categoriaNombre = categoriaNombre;
 	}
+	
+	public ProductoResponse() {
+		super();
+	}
 
 
 	public Long getId() {
