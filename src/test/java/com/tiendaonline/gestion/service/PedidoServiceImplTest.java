@@ -6,6 +6,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.tiendaonline.gestion.dto.pedido.CrearPedidoRequest;
 import com.tiendaonline.gestion.dto.pedido.ItemPedidoRequest;
+import com.tiendaonline.gestion.exception.BadRequestException;
 import com.tiendaonline.gestion.exception.ResourceNotFoundException;
 import com.tiendaonline.gestion.exception.StockInsuficienteException;
 import com.tiendaonline.gestion.model.Pedido;
@@ -108,6 +110,17 @@ public class PedidoServiceImplTest {
 		
 		// Verify
 		verify(pedidoRepository, never()).save(any(Pedido.class));
+	}
+	
+	//test BadRequestException cuando no hay items
+	@Test
+	void deberiaLanzarBadRequestExceptionCuandoNoHayItems() {
+		
+		CrearPedidoRequest request = new CrearPedidoRequest();
+		request.setItems(Collections.emptyList());
+		
+		assertThrows(BadRequestException.class,
+				() -> pedidoService.crearPedido(request, "cliente1"));
 	}
 	
 	
