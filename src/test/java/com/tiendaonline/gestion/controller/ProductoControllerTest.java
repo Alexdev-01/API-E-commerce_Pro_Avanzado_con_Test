@@ -87,8 +87,7 @@ public class ProductoControllerTest {
 		producto.setId(1L);
 		producto.setNombre("Laptop");
 		
-		when(productoService.crearProducto(any(ProductoRequest.class)))
-			.thenReturn(producto);
+		when(productoService.crearProducto(any(ProductoRequest.class))).thenReturn(producto);
 		
 		mockMvc.perform(post("/productos")
 				.contentType(MediaType.APPLICATION_JSON)
