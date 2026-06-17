@@ -102,5 +102,24 @@ public class ProductoControllerTest {
 						"""))
 							.andExpect(status().isOk());
 	}
+	
+	// Test para verificar que el endpoint de crear producto devuelve un estado HTTP 400 Bad Request cuando el nombre del producto está vacío
+	@Test
+	void deberiaRetornarBadRequestCuandoNombreEsVacio() {
+		
+		mockMvc.perform(post("/productos")
+			.contentType(MediaType.APPLICATION_JSON)
+			.content("""
+					{
+						"nombre":"",
+						"descripcion":"Laptop Gaming",
+						"precio":1200,
+						"stock":10,
+						"categoriaId":1
+					}
+					"""))
+			.andExpect(status().isBadRequest());
+	}
+	}
 
 }
