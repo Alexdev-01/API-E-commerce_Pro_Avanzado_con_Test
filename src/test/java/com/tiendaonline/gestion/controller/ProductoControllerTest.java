@@ -22,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.tiendaonline.gestion.dto.producto.ProductoRequest;
 import com.tiendaonline.gestion.dto.producto.ProductoResponse;
+import com.tiendaonline.gestion.exception.ResourceNotFoundException;
 import com.tiendaonline.gestion.model.Producto;
 import com.tiendaonline.gestion.service.ProductoService;
 
@@ -120,6 +121,19 @@ public class ProductoControllerTest {
 					"""))
 			.andExpect(status().isBadRequest());
 	}
+	
+	// Test para verificar que el endpoint de obtener producto por ID devuelve un estado HTTP 404 Not Found cuando el producto no existe
+	@Test
+	void deberiaRetornar404CuandoProductoNoExiste() throws Exception {
+		
+		when(productoService.obtenerPorId(999L)).thenThrow(new ResourceNotFoundException("Producto no encontrado"));
+		
+		mockMvc.perform(get("/productos/999"))
+			.andExpect(status().isNotFound());
 	}
-
+	
+	
+	
+	
+	
 }
