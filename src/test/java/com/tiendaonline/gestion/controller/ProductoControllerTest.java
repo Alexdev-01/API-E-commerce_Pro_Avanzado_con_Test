@@ -1,9 +1,11 @@
 package com.tiendaonline.gestion.controller;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -12,7 +14,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
@@ -133,7 +134,31 @@ public class ProductoControllerTest {
 	}
 	
 	
-	
+	@Test
+	void deberiaActualizarProducto() throws Exception {
+		
+		ProductoResponse response = new ProductoResponse();
+		response.setId(1L);
+		response.setNombre("Laptop Actualizada");
+		
+		when(productoService.actualizarProducto(
+				eq(1L),
+				any(ProductoRequest.class)))
+		.thenReturn(response);
+		
+		mockMvc.perform(put("/productos/1")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("""
+						{
+							"nombre":"Laptop Actualizada",
+							"descripcion":"Nueva",
+							"precio":1500,
+							"stock":5,
+							"categoriaId":1
+						}
+						"""))
+		.andExpect(status().isOk());
+}
 	
 	
 }
