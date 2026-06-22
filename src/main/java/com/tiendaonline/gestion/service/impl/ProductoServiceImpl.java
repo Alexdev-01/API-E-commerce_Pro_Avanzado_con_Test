@@ -59,21 +59,18 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 
 	@Override
-	public ProductoResponse actualizarProducto(Long id, ProductoRequest request) {
+	public Producto actualizarProducto(Long id, Producto producto) {
 		Producto existente = obtenerEntidadPorId(id);
 
-		Categoria categoria = categoriaRepository.findById(request.getCategoriaId())
-				.orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada con id: " + request.getCategoriaId()));
-
-		existente.setNombre(request.getNombre());
-		existente.setDescripcion(request.getDescripcion());
-		existente.setPrecio(request.getPrecio());
-		existente.setStock(request.getStock());
-		existente.setCategoria(categoria);
+		existente.setNombre(producto.getNombre());
+		existente.setDescripcion(producto.getDescripcion());
+		existente.setPrecio(producto.getPrecio());
+		existente.setStock(producto.getStock());
+		existente.setCategoria(producto.getCategoria());
 
 		log.info("Actualizado producto correctamente: {}", existente.getNombre());
-
-		return mapToResponse(productoRepository.save(existente));
+		
+		return productoRepository.save(existente);
 	}
 
 	@Override
