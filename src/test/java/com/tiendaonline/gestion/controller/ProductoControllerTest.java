@@ -168,7 +168,7 @@ public class ProductoControllerTest {
 		doNothing().when(productoService).eliminarProducto(1L);
 		
 		mockMvc.perform(delete("/productos/1"))
-			.andExpect(status().isOk());
+			.andExpect(status().isNoContent());
 	}
 	
 	
