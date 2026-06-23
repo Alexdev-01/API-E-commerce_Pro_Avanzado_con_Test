@@ -2,7 +2,9 @@ package com.tiendaonline.gestion.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -133,31 +135,30 @@ public class ProductoControllerTest {
 			.andExpect(status().isNotFound());
 	}
 	
-	// Test para verificar que el endpoint de actualizar producto devuelve un estado HTTP 200 OK
+	// Test para verificar que el endpoint de actualizar producto devuelve un estado HTTP 200 OK y los datos actualizados
 	@Test
 	void deberiaActualizarProducto() throws Exception {
 		
-		ProductoResponse response = new ProductoResponse();
-		response.setId(1L);
-		response.setNombre("Laptop Actualizada");
+		Producto producto = new Producto();
+		producto.setId(1L);
+		producto.setNombre("Laptop Actualizada");
 		
 		when(productoService.actualizarProducto(
 				eq(1L),
-				any(ProductoRequest.class)))
-		.thenReturn(response);
+				any(Producto.class)))
+				.thenReturn(producto);
 		
 		mockMvc.perform(put("/productos/1")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("""
 						{
-							"nombre":"Laptop Actualizada",
-							"descripcion":"Nueva",
-							"precio":1500,
-							"stock":5,
-							"categoriaId":1
+							"nombre":"Laptop Actualizada"
 						}
 						"""))
-		.andExpect(status().isOk());
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.id").value(1))
+				.andExpect(jsonPath("$.nombre")
+						.value("Laptop Actualizada"));
 	}
 	
 	// Test para verificar que el endpoint de eliminar producto devuelve un estado HTTP 200 OK
