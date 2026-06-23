@@ -133,7 +133,7 @@ public class ProductoControllerTest {
 			.andExpect(status().isNotFound());
 	}
 	
-	
+	// Test para verificar que el endpoint de actualizar producto devuelve un estado HTTP 200 OK
 	@Test
 	void deberiaActualizarProducto() throws Exception {
 		
@@ -158,7 +158,19 @@ public class ProductoControllerTest {
 						}
 						"""))
 		.andExpect(status().isOk());
-}
+	}
+	
+	// Test para verificar que el endpoint de eliminar producto devuelve un estado HTTP 200 OK
+	@Test
+	void deberiaEliminarProducto() throws Exception {
+		
+		doNothing().when(productoService).eliminarProducto(1L);
+		
+		mockMvc.perform(delete("/productos/1"))
+			.andExpect(status().isOk());
+	}
+	
+	
 	
 	
 }
