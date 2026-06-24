@@ -1,7 +1,11 @@
 package com.tiendaonline.gestion.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +36,22 @@ public class PedidoController {
 		String username = authentication.getName(); 
 		
 		return this.pedidoService.crearPedido(request, username);
+	}
+	
+	
+	@GetMapping	// Define un endpoint GET para obtener los pedidos del usuario autenticado
+	public ResponseEntity<List<PedidoResponse>> obtenerMisPedidos(Authentication authentication) {
+		
+		String username = authentication.getName();
+		
+		return ResponseEntity.ok(pedidoService.obtenerPedidosUsuario(username));
+	}
+	
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<PedidoResponse> obtenerPedido(@PathVariable Long id) {
+		
+		return ResponseEntity.ok(pedidoService.obtenerPedidoPorId(id));
 	}
 
 }
