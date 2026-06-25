@@ -53,7 +53,7 @@ public class ProductoController {
 	
 	//Acceso Admin
 	@PutMapping("/{id}")
-	public ResponseEntity<Producto> actualizarProductos(@PathVariable Long id,@RequestBody Producto producto) {
+	public ResponseEntity<Producto> actualizarProductos(@PathVariable Long id, @RequestBody Producto producto) {
 		return ResponseEntity.ok(productoService.actualizarProducto(id, producto));
 	}
 	
