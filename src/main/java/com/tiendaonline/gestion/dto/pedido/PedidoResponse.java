@@ -11,8 +11,13 @@ public class PedidoResponse {
 	private BigDecimal total;
 	private String usuario;
 	private List<ItemPedidoResponse> items;
+		
 	
-	
+	public PedidoResponse() {
+		super();
+	}
+
+
 	public PedidoResponse(Long id, LocalDateTime fecha, BigDecimal total, String usuario,
 			List<ItemPedidoResponse> items) {
 		super();
