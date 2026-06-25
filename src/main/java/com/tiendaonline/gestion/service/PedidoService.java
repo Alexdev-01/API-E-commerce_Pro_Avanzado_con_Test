@@ -15,8 +15,12 @@ public interface PedidoService {
 	
 	List<PedidoResponse> obtenerPedidosUsuario(Usuario usuario);
 	
+	List<PedidoResponse> obtenerPedidosUsuario(String username);
+	
 	List<PedidoResponse> obtenerTodos();
 	
 	ResponseEntity<PedidoResponse> crearPedido(CrearPedidoRequest request, String username);
-
+	
+	PedidoResponse obtenerPedidoPorId(Long id);
+	
 }
