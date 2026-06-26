@@ -23,4 +23,8 @@ public interface PedidoService {
 	
 	PedidoResponse obtenerPedidoPorId(Long id);
 	
+	PedidoResponse obtenerPedidoPorId(Long id, String username);
+
+	List<PedidoResponse> obtenerTodosLosPedidos();
+	
 }
