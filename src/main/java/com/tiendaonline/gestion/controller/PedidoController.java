@@ -49,9 +49,11 @@ public class PedidoController {
 	
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<PedidoResponse> obtenerPedido(@PathVariable Long id) {
+	public ResponseEntity<PedidoResponse> obtenerPedidoPorId(@PathVariable Long id, Authentication authentication) {
 		
-		return ResponseEntity.ok(pedidoService.obtenerPedidoPorId(id));
+		String username = authentication.getName();
+		
+		return ResponseEntity.ok(pedidoService.obtenerPedidoPorId(id, username));
 	}
 
 }
