@@ -171,5 +171,23 @@ public class PedidoServiceImpl implements PedidoService {
 		
 		return mapToResponse(pedido);
 	}
+
+	@Override
+	public PedidoResponse obtenerPedidoPorId(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	@Override
+	public List<PedidoResponse> obtenerTodosLosPedidos() {
+		
+		log.info("Obteniendo todos los pedidos");
+		
+		return pedidoRepository.findAll()
+				.stream()
+				.map(this::mapToResponse)
+				.toList();
+	}
 	
 }
