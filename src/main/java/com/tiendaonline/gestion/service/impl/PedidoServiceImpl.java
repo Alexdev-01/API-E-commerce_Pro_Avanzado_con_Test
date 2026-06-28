@@ -156,5 +156,20 @@ public class PedidoServiceImpl implements PedidoService {
 				.toList();
 	}
 	
-
+	// Método para obtener todos los pedidos (solo para administradores)
+	@Override
+	public PedidoResponse obtenerPedidoPorId(Long id, String username) {
+		
+		Pedido pedido = pedidoRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado"));
+		
+		if (!pedido.getUsuario().getUsername().equals(username)) {
+			throw new BadRequestException("No tienes permiso para consultar este pedido");
+		}
+		
+		log.info("Pedido {} consultado por {}", id, username);
+		
+		return mapToResponse(pedido);
+	}
+	
 }
