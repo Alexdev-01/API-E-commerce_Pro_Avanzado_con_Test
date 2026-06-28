@@ -141,5 +141,20 @@ public class PedidoServiceImpl implements PedidoService {
 				);
 	}
 	
+	// Método para obtener un pedido por su ID y el nombre de usuario del cliente
+	@Override
+	public List<PedidoResponse> obtenerPedidosUsuario(String username) {
+		
+		Usuario usuario = usuarioRepository.findByUsername(username)
+				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+		
+		log.info("Obteniendo pedidos del usuario: {}", username);
+		
+		return pedidoRepository.findByUsuario(usuario)
+				.stream()
+				.map(this::mapToResponse)
+				.toList();
+	}
+	
 
 }
