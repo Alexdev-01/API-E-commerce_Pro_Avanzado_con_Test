@@ -82,4 +82,18 @@ public class PedidoControllerTest {
 				.andExpect(status().isOk());
 	}
 	
+	
+	@WithMockUser(username = "cliente1", roles = "CLIENTE")
+	@Test
+	void deberiaObtenerPedidoPorId() throws Exception {
+		
+		PedidoResponse pedido = new PedidoResponse();
+		
+		when(pedidoService.obtenerPedidoPorId(1L, "cliente1"))
+				.thenReturn(pedido);
+		
+		mockMvc.perform(get("/pedidos/1"))
+				.andExpect(status().isOk());
+	}
+	
 }
