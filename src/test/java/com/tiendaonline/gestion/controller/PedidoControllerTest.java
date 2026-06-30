@@ -8,6 +8,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -63,6 +65,20 @@ public class PedidoControllerTest {
 					]
 				}
 				"""))
+				.andExpect(status().isOk());
+	}
+	
+	
+	@WithMockUser(username = "cliente1", roles = "CLIENTE")
+	@Test
+	void deberiaObtenerMisPedidos() throws Exception {
+		
+		List<PedidoResponse> pedidos = List.of(new PedidoResponse());
+		
+		when(pedidoService.obtenerPedidosUsuario("cliente1"))
+				.thenReturn(pedidos);
+		
+		mockMvc.perform(get("/pedidos"))
 				.andExpect(status().isOk());
 	}
 	
