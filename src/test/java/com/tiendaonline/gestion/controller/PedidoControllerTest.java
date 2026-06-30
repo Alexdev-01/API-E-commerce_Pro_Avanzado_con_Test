@@ -21,6 +21,15 @@ import com.tiendaonline.gestion.dto.pedido.CrearPedidoRequest;
 import com.tiendaonline.gestion.dto.pedido.PedidoResponse;
 import com.tiendaonline.gestion.service.PedidoService;
 
+import static org.mockito.Mockito.when;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.springframework.security.test.context.support.WithMockUser;
+
+
 @WebMvcTest(PedidoController.class)
 public class PedidoControllerTest {
 	
@@ -29,9 +38,9 @@ public class PedidoControllerTest {
 	
 	@MockitoBean
 	private PedidoService pedidoService;
-
 	
 	
+	@WithMockUser(username = "cliente1", roles = "CLIENTE")
 	@Test
 	void deberiaCrearPedido() throws Exception {
 		
@@ -40,21 +49,21 @@ public class PedidoControllerTest {
 		when(pedidoService.crearPedido(
 				any(CrearPedidoRequest.class),
 				anyString()))
-			.thenReturn(ResponseEntity.ok(response));
+				.thenReturn(ResponseEntity.ok(response));
 		
 		mockMvc.perform(post("/pedidos")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("""
-						{
-							"items":[
-								{
-									"productoId":1,
-									"cantidad":2
-								}
-							]
-						}
-						"""))
+				{
+					"items":[
+					{
+						"productoId":1,
+						"cantidad":2
+					}
+					]
+				}
+				"""))
 				.andExpect(status().isOk());
 	}
-
+	
 }
