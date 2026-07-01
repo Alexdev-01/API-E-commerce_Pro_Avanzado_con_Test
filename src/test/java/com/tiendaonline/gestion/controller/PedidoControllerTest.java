@@ -96,7 +96,7 @@ public class PedidoControllerTest {
 				.andExpect(status().isOk());
 	}
 	
-	
+	//ADMIN
 	@WithMockUser(username = "admin", roles = "ADMIN")
 	@Test
 	void deberiaObtenerTodosLosPedidos() throws Exception {
@@ -111,5 +111,12 @@ public class PedidoControllerTest {
 	}
 	
 	
+	@WithMockUser(username = "cliente1", roles = "CLIENTE")
+	@Test
+	void clienteNoDebeAccederATodosLosPedidos() throws Exception {
+		
+		mockMvc.perform(get("/pedidos/admin"))
+				.andExpect(status().isForbidden());
+	}
 	
 }
