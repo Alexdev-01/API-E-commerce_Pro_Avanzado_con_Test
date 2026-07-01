@@ -110,7 +110,6 @@ public class PedidoControllerTest {
 				.andExpect(status().isOk());
 	}
 	
-	
 	@WithMockUser(username = "cliente1", roles = "CLIENTE")
 	@Test
 	void clienteNoDebeAccederATodosLosPedidos() throws Exception {
@@ -119,4 +118,10 @@ public class PedidoControllerTest {
 				.andExpect(status().isForbidden());
 	}
 	
+	@Test
+	void usuarioNoAutenticadoNoPuedeConsultarPedidos() throws Exception {
+		
+		mockMvc.perform(get("/pedidos"))
+				.andExpect(status().isUnauthorized());
+	}
 }
