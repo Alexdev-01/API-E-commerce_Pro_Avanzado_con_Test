@@ -96,4 +96,20 @@ public class PedidoControllerTest {
 				.andExpect(status().isOk());
 	}
 	
+	
+	@WithMockUser(username = "admin", roles = "ADMIN")
+	@Test
+	void deberiaObtenerTodosLosPedidos() throws Exception {
+		
+		List<PedidoResponse> pedidos = List.of(new PedidoResponse());
+		
+		when(pedidoService.obtenerTodosLosPedidos())
+				.thenReturn(pedidos);
+		
+		mockMvc.perform(get("/pedidos/admin"))
+				.andExpect(status().isOk());
+	}
+	
+	
+	
 }
