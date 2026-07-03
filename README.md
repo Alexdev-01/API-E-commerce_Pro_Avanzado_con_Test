@@ -356,17 +356,3 @@ Orden recomendado:
 Backend Java Developer
 
 ---
-
-# 🔗 Enlaces Útiles
-
-- Spring Boot
-- Spring Security
-- Spring Data JPA
-- Hibernate ORM
-- JWT
-- JUnit 5
-- Mockito
-- MockMvc
-- Maven
-- Postman
-- MySQL
