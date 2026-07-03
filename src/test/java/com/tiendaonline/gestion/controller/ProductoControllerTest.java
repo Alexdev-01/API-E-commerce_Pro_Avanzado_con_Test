@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -109,7 +110,7 @@ public class ProductoControllerTest {
 	
 	// Test para verificar que el endpoint de crear producto devuelve un estado HTTP 400 Bad Request cuando el nombre del producto está vacío
 	@Test
-	void deberiaRetornarBadRequestCuandoNombreEsVacio() {
+	void deberiaRetornarBadRequestCuandoNombreEsVacio() throws Exception {
 		
 		mockMvc.perform(post("/productos")
 			.contentType(MediaType.APPLICATION_JSON)
