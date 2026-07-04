@@ -356,3 +356,18 @@ Orden recomendado:
 Backend Java Developer  | Java | Spring Boot
 
 ---
+
+# 🔗 Enlaces Útiles
+
+* **Spring Boot**: https://spring.io/projects/spring-boot
+* **Spring Security**: https://spring.io/projects/spring-security
+* **Spring Data JPA**: https://spring.io/projects/spring-data-jpa
+* **Hibernate ORM**: https://hibernate.org/orm/
+* **JWT (JSON Web Tokens)**: https://jwt.io/
+* **JUnit 5**: https://junit.org/junit5/
+* **Mockito**: https://site.mockito.org/
+* **MockMvc**: https://docs.spring.io/spring-framework/reference/testing/mockmvc.html
+* **Maven**: https://maven.apache.org/
+* **Postman**: https://www.postman.com/
+* **MySQL**: https://www.mysql.com/
+
