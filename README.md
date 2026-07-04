@@ -353,6 +353,6 @@ Orden recomendado:
 
 **Alejandro Collado Severiano**
 
-Backend Java Developer
+Backend Java Developer  | Java | Spring Boot
 
 ---
