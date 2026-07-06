@@ -35,3 +35,32 @@ GET http://localhost:8080/productos
 
 
 
+
+///////////////////////// EJEMPLO
+### 1. Crear un usuario
+
+**Endpoint**
+
+POST /api/users
+
+**Body**
+
+{
+    "name":"Juan",
+    "email":"juan@test.com"
+}
+
+**Resultado esperado**
+
+- HTTP 201 Created
+- Usuario almacenado en la base de datos
+
+**Resultado obtenido**
+
+✔ Correcto
+
+---
+
+
+
+
