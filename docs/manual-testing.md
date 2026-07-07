@@ -87,6 +87,27 @@ POST http://localhost:8080/auth/register
 
 ---
 
+### 5. Login CLIENTE
+
+**Endpoint**
+
+POST http://localhost:8080/auth/login
+
+**Body**
+
+ RAW JSON
+
+{
+   "username": "cliente1",
+   "password": "123456"
+}
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Login del usuario.
+
+---
 
 
 
