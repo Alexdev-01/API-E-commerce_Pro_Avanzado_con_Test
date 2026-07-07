@@ -59,6 +59,33 @@ POST http://localhost:8080/auth/register
 
 ---
 
+### 4. Registrar un usuario ADMIN
+
+**Endpoint**
+
+POST http://localhost:8080/auth/register
+
+**Body**
+
+ RAW JSON
+
+{
+    "username": "admin",
+    "password": "Admin123",
+    "email": "admin@tienda.com"
+}
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Usuario almacenado en la base de datos
+
+
+**Adiccional**
+
+- Entrar en la app de la BBDD y cambiar el ROL predefinido de CLIENTE a ADMIN del usuario "admin". Para asegurar que solo el administrador de la BBDD decide que usuario es ADMIN.
+
+---
 
 
 
