@@ -105,10 +105,32 @@ POST http://localhost:8080/auth/login
 **Resultado obtenido**
 
 - HTTP 200 OK
-- Login del usuario.
+- Login del cliente.
 
 ---
 
+### 6. Login ADMIN
+
+**Endpoint**
+
+POST http://localhost:8080/auth/login
+
+**Body**
+
+ RAW JSON
+
+{
+    "username": "admin",
+    "password": "Admin123"
+}
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Login del administrador.
+- Obtendremos un token, que utilizaremos para todas las peticiones de administrador.
+
+---
 
 
 
