@@ -18,7 +18,11 @@ Tomcat started on port(s): 8080
 
 Started ApiGestionProductosPedidosApplication
 
+---
+
 ### 2. Comprobar que la API responde
+
+**Endpoint**
 
 GET http://localhost:8080/productos
 
@@ -32,34 +36,30 @@ GET http://localhost:8080/productos
 
 ---
 
-
-
-
-
-///////////////////////// EJEMPLO
-### 1. Crear un usuario
+### 3. Registrar un usuario CLIENTE
 
 **Endpoint**
 
-POST /api/users
+POST http://localhost:8080/auth/register
 
 **Body**
 
+ RAW JSON
+
 {
-    "name":"Juan",
-    "email":"juan@test.com"
+  "username": "cliente1",
+  "email": "cliente1@tienda.com",
+  "password": "123456"
 }
-
-**Resultado esperado**
-
-- HTTP 201 Created
-- Usuario almacenado en la base de datos
 
 **Resultado obtenido**
 
-✔ Correcto
+- HTTP 200 OK
+- Usuario almacenado en la base de datos
 
 ---
+
+
 
 
 
