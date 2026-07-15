@@ -46,11 +46,13 @@ POST http://localhost:8080/auth/register
 
  RAW JSON
 
+```
 {
   "username": "cliente1",
   "email": "cliente1@tienda.com",
   "password": "123456"
 }
+```
 
 **Resultado obtenido**
 
@@ -68,12 +70,14 @@ POST http://localhost:8080/auth/register
 **Body**
 
  RAW JSON
-
+ 
+```
 {
     "username": "admin",
     "password": "Admin123",
     "email": "admin@tienda.com"
 }
+```
 
 **Resultado obtenido**
 
@@ -96,11 +100,13 @@ POST http://localhost:8080/auth/login
 **Body**
 
  RAW JSON
-
+ 
+```
 {
    "username": "cliente1",
    "password": "123456"
 }
+```
 
 **Resultado obtenido**
 
@@ -117,12 +123,14 @@ POST http://localhost:8080/auth/login
 
 **Body**
 
+```
  RAW JSON
 
 {
     "username": "admin",
     "password": "Admin123"
 }
+```
 
 **Resultado obtenido**
 
