@@ -132,5 +132,35 @@ POST http://localhost:8080/auth/login
 
 ---
 
+### 6. Guardar automáticamente el JWT Environments
+
+Es necesario crearlo para que quede guardado el Token.
+
+Icono “+”> Environments.
+Nombre: API-Ecommerce
+
+Variable: Token
+Value: (Vacío)
+
+En POSTMAN arriba a la derecha seleccionamos el nombre del Environments que hemos creado: API-Ecommerce2
+Esto te ahorrará tener que copiar y pegar el token en cada petición.
+
+
+**Endpoint**
+
+POST http://localhost:8080/auth/login
+
+Pestaña Authorization, tiene que estan en “No Auth”
+
+**Body**
+
+ RAW JSON
+
+{
+    "username": "admin",
+    "password": "Admin123"
+}
+
+
 
 
