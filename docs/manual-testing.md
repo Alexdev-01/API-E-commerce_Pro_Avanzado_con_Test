@@ -156,11 +156,24 @@ Pestaña Authorization, tiene que estan en “No Auth”
 
  RAW JSON
 
+```
 {
     "username": "admin",
     "password": "Admin123"
 }
+```
 
+**Añadir el Script**
 
+Ir a la pestaña Scripts> Post-response > Escribe:
+
+```
+const response = pm.response.json();
+
+pm.environment.set("token", response.data.token);
+
+console.log("TOKEN GUARDADO:");
+console.log(response.data.token);
+```
 
 
