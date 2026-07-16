@@ -215,8 +215,14 @@ GET http://localhost:8080/categorias
 }
 ```
 
+Pestaña Headers> añadimos: 
+Key: “Authorization”
+Value: `Bearer {{token}}`
 
+Ya tendrá que permitir acceso.
 
+**Resultado obtenido**
 
+- HTTP 200 OK
 
 
