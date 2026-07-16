@@ -185,3 +185,38 @@ console.log(response.data.token);
 ```
 
 
+**Ejecutar Login Admin**
+
+Pulsar “Send”. Te devuelve:
+
+```
+{
+    "token":"eyJhbGciOiJIUzI1NiJ9...."
+}
+
+```
+
+**Comprobar que se ha guardado el token**
+
+Ir a Environments> API-Ecommerce> Token el la columna de Value aparecerá el token.
+
+Vamos a generar una nueva petición.
+
+GET http://localhost:8080/categorias
+
+
+**body**
+ RAW JSON
+ 
+```
+{
+    "username":"admin",
+    "password":"Admin123"
+}
+```
+
+
+
+
+
+
