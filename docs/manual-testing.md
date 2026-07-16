@@ -202,6 +202,8 @@ Ir a Environments> API-Ecommerce> Token el la columna de Value aparecerá el tok
 
 Vamos a generar una nueva petición.
 
+**Endpoint**
+
 GET http://localhost:8080/categorias
 
 
@@ -225,4 +227,34 @@ Ya tendrá que permitir acceso.
 
 - HTTP 200 OK
 
+---
 
+### 7. Login CRUD de Categorías
+
+###7.1 Crear una categoría
+
+**Endpoint**
+
+POST http://localhost:8080/categorias
+
+Headers
+
+Authorization   -   `Bearer {{token}}`
+
+**Body**
+
+ RAW JSON
+ 
+```
+{
+    "nombre": "Informática"
+}
+
+```
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Devuelve la categoría creada.
+
+---
