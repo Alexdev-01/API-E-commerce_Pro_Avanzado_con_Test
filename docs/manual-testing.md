@@ -231,13 +231,13 @@ Ya tendrá que permitir acceso.
 
 ### 7. Login CRUD de Categorías
 
-###7.1 Crear una categoría
+#### 7.1 Crear una categoría
 
 **Endpoint**
 
 POST http://localhost:8080/categorias
 
-Headers
+**Headers**
 
 Authorization   -   `Bearer {{token}}`
 
