@@ -276,3 +276,30 @@ Authorization   -   `Bearer {{token}}`
 
 ---
 
+#### 7.3 Actualizar una categoría
+
+**Endpoint**
+
+PUT http://localhost:8080/categorias/1
+
+**Headers**
+
+Authorization   -   `Bearer {{token}}`
+
+**Body**
+
+ RAW JSON
+ 
+```
+{
+    "nombre": "Electrónica" 
+}
+
+```
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Categoría actualizada.
+
+---
