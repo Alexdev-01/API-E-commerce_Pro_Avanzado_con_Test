@@ -258,3 +258,21 @@ Authorization   -   `Bearer {{token}}`
 - Devuelve la categoría creada.
 
 ---
+
+#### 7.2 Listar categorías
+
+**Endpoint**
+
+GET http://localhost:8080/categorias
+
+**Headers**
+
+Authorization   -   `Bearer {{token}}`
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Devuelve la categoría creada.
+
+---
+
