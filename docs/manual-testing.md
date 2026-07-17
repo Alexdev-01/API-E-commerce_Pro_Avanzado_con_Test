@@ -229,7 +229,7 @@ Ya tendrá que permitir acceso.
 
 ---
 
-### 7. Login CRUD de Categorías
+### 7. CRUD de Categorías
 
 #### 7.1 Crear una categoría
 
@@ -318,5 +318,38 @@ Authorization   -   `Bearer {{token}}`
 
 - HTTP 204 No Content
 - Categoría eliminada y no devuelve valor..
+
+---
+
+### 8. CRUD de Producto
+
+#### 8.1 Crear una Producto
+
+**Endpoint**
+
+POST http://localhost:8080/productos
+
+**Headers**
+
+Authorization   -   `Bearer {{token}}`
+
+**Body**
+
+ RAW JSON
+ 
+```
+{
+    "nombre": "Portátil Lenovo",
+    "descripcion": "Lenovo ThinkPad E16",
+    "precio": 899.99,
+    "stock": 10,
+    "categoriaId": 1
+}
+```
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Devuelve la producto creada.
 
 ---
