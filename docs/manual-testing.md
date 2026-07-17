@@ -303,3 +303,20 @@ Authorization   -   `Bearer {{token}}`
 - Categoría actualizada.
 
 ---
+
+#### 7.4 Eliminar una categoría
+
+**Endpoint**
+
+DELETE http://localhost:8080/categorias/1
+
+**Headers**
+
+Authorization   -   `Bearer {{token}}`
+
+**Resultado obtenido**
+
+- HTTP 204 No Content
+- Categoría eliminada y no devuelve valor..
+
+---
