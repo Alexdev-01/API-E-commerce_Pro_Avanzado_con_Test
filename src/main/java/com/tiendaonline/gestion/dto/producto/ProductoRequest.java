@@ -14,7 +14,7 @@ public class ProductoRequest {
 	@NotBlank(message = "La descripción no es obligatoria")
 	private String descripcion;
 	
-	@NotBlank(message = "El precio no es obligatorio")
+	@NotNull(message = "El precio es obligatorio")
 	@Positive(message = "El precio debe ser un valor positivo")
 	private BigDecimal precio;
 	
