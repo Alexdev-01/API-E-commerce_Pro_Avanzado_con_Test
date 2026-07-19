@@ -2,6 +2,7 @@ package com.tiendaonline.gestion.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class Categoria {
 	
 	private String descripcion;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "categoria")	// Especifica una relación uno a muchos con la entidad Producto, donde "categoria" es el campo en la clase Producto que mapea esta relación
 	private List<Producto> productos;
 }
