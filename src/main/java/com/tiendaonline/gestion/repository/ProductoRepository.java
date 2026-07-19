@@ -28,7 +28,7 @@ public interface ProductoRepository  extends JpaRepository<Producto, Long>, JpaS
 	""")
 	
 	Page<Producto> filtrarProductos(
-			@Param("categoriaID") Long categoriaID,
+			@Param("categoriaId") Long categoriaID,
 			@Param("precioMin") BigDecimal precioMin,
 			@Param("precioMax") BigDecimal precioMax,
 			Pageable pageable);
