@@ -140,7 +140,7 @@ POST http://localhost:8080/auth/login
 
 ---
 
-### 6. Guardar automáticamente el JWT Environments
+### 7. Guardar automáticamente el JWT Environments
 
 Es necesario crearlo para que quede guardado el Token.
 
@@ -229,9 +229,9 @@ Ya tendrá que permitir acceso.
 
 ---
 
-### 7. CRUD de Categorías
+### 8. CRUD de Categorías
 
-#### 7.1 Crear una categoría
+#### 8.1 Crear una categoría
 
 **Endpoint**
 
@@ -259,7 +259,7 @@ Authorization   -   `Bearer {{token}}`
 
 ---
 
-#### 7.2 Listar categorías
+#### 8.2 Listar categorías
 
 **Endpoint**
 
@@ -276,7 +276,7 @@ Authorization   -   `Bearer {{token}}`
 
 ---
 
-#### 7.3 Actualizar una categoría
+#### 8.3 Actualizar una categoría
 
 **Endpoint**
 
@@ -304,7 +304,7 @@ Authorization   -   `Bearer {{token}}`
 
 ---
 
-#### 7.4 Eliminar una categoría
+#### 8.4 Eliminar una categoría
 
 **Endpoint**
 
@@ -321,7 +321,7 @@ Authorization   -   `Bearer {{token}}`
 
 ---
 
-#### 7.5 Necesario crear categorias
+#### 8.5 Necesario crear categorias
 
 Es necesario crear al menos una categoría para realizar los siguientes test.
 Se puede crear mediante POSTMAN, desde Eclipse ejecutando un data.sql o directamente desde la BBDD.
@@ -350,9 +350,9 @@ WHERE NOT EXISTS (SELECT 1 FROM categorias WHERE id = 5);
 ```
 
 
-### 8. CRUD de Producto
+### 9. CRUD de Producto
 
-#### 8.1 Crear una Producto
+#### 9.1 Crear una Producto
 
 **Endpoint**
 
@@ -380,5 +380,19 @@ Authorization   -   `Bearer {{token}}`
 
 - HTTP 200 OK
 - Devuelve la producto creada.
+
+---
+
+#### 9.2 Listar productos
+
+**Endpoint**
+
+GET http://localhost:8080/productos
+
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Debe devolver una lista de productos.
 
 ---
