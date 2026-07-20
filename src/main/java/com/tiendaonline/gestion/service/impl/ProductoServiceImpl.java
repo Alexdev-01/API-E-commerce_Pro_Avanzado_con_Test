@@ -27,6 +27,8 @@ import com.tiendaonline.gestion.exception.ResourceNotFoundException;
 // Implementa la interfaz ProductoService para proporcionar la lógica de negocio relacionada con los productos
 public class ProductoServiceImpl implements ProductoService{
 
+	private static final Logger log = LoggerFactory.getLogger(ProductoServiceImpl.class);
+
 	private final ProductoRepository productoRepository;
 	private final CategoriaRepository categoriaRepository;
 
@@ -125,10 +127,5 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 
 
-	private static final Logger log =
-			LoggerFactory.getLogger(ProductoServiceImpl.class);
-	
-	
-	
 
 }
