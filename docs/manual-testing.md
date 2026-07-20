@@ -396,3 +396,17 @@ GET http://localhost:8080/productos
 - Debe devolver una lista de productos.
 
 ---
+
+#### 9.3 Obtener un producto
+
+**Endpoint**
+
+GET http://localhost:8080/productos/1
+
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Debe devuelve el producto 1.
+
+---
