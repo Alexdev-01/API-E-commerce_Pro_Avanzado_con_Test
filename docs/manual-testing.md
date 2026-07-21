@@ -410,3 +410,17 @@ GET http://localhost:8080/productos/1
 - Debe devuelve el producto 1.
 
 ---
+
+#### 9.4 Paginación
+
+**Endpoint**
+
+GET http://localhost:8080/productos/paginado?page=0&size=5
+
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Debe devolver un ApiResponse<Page<ProductoResponse>>.
+
+---
