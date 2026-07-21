@@ -474,3 +474,31 @@ Authorization   -   `Bearer {{token}}`
 - Borra el producto 1.
 
 ---
+
+### 10. CRUD de Pedidos
+
+
+#### 10.1 Login CLIENTE
+
+**Endpoint**
+
+POST http://localhost:8080/auth/login
+
+
+**Body**
+
+ RAW JSON
+ 
+```
+{
+    "username": "cliente1",
+    "password": "123456"
+}
+```
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+
+
+---
