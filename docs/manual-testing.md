@@ -424,3 +424,36 @@ GET http://localhost:8080/productos/paginado?page=0&size=5
 - Debe devolver un ApiResponse<Page<ProductoResponse>>.
 
 ---
+
+#### 9.5 Actualizar un producto
+
+**Endpoint**
+
+PUT http://localhost:8080/productos/1
+
+**Headers**
+
+Authorization   -   `Bearer {{token}}`
+
+**Body**
+
+ RAW JSON
+ 
+```
+{
+    "nombre": "Portátil Lenovo PRO",
+    "descripcion": "Lenovo ThinkPad E16 Gen 2",
+    "precio": 999.99,
+    "stock": 15,
+    "categoria": {
+        "id": 1
+    }
+}
+```
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+- Devuelve la producto cambiado.
+
+---
