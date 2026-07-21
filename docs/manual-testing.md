@@ -457,3 +457,20 @@ Authorization   -   `Bearer {{token}}`
 - Devuelve la producto cambiado.
 
 ---
+
+#### 9.6 Eliminar un producto
+
+**Endpoint**
+
+DELETE http://localhost:8080/productos/1
+
+**Headers**
+
+Authorization   -   `Bearer {{token}}`
+
+**Resultado obtenido**
+
+- HTTP 204 No Content
+- Borra el producto 1.
+
+---
