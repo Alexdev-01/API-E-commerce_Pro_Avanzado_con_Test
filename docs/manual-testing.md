@@ -521,7 +521,7 @@ POST http://localhost:8080/auth/login
 }
 ```
 
-**Body**
+**Scripts**
 
 - En Post-response
 
