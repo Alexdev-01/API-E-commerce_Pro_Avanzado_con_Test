@@ -575,3 +575,18 @@ Authorization   -   `Bearer {{token}}`
 - Devuelve el pedido creada.
 
 ---
+
+#### 10.4 Comprobar el stock
+
+**Endpoint**
+
+GET http://localhost:8080/productos/1
+
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+
+- El stock debería haberse reducido, de 10 a 8.
+
+---
