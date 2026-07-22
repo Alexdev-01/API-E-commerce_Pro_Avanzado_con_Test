@@ -502,3 +502,42 @@ POST http://localhost:8080/auth/login
 
 
 ---
+
+#### 10.2 Login Environments CLIENTE
+
+**Endpoint**
+
+POST http://localhost:8080/auth/login
+
+
+**Body**
+
+ RAW JSON
+ 
+```
+{
+    "username": "cliente1",
+    "password": "123456"
+}
+```
+
+**Body**
+
+- En Post-response
+
+```
+const response = pm.response.json();
+
+pm.environment.set("token", response.data.token);
+
+console.log("TOKEN GUARDADO:");
+console.log(response.data.token)
+```
+
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+
+
+---
