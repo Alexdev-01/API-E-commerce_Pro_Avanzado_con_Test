@@ -541,3 +541,37 @@ console.log(response.data.token)
 
 
 ---
+
+#### 10.3 Crear un pedido
+
+**Endpoint**
+
+POST http://localhost:8080/pedidos
+
+**Headers**
+
+Authorization   -   `Bearer {{token}}`
+
+**Body**
+
+ RAW JSON
+ 
+```
+{
+    "items": [
+        {
+            "productoId": 1,
+            "cantidad": 2
+        }
+    ]
+}
+```
+
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+
+- Devuelve el pedido creada.
+
+---
