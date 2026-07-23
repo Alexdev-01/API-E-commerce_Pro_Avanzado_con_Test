@@ -606,7 +606,7 @@ GET http://localhost:8080/pedidos
 
 ---
 
-#### 10.5 Comprobar el stock
+#### 10.6 Comprobar el stock
 
 **Endpoint**
 
@@ -618,5 +618,20 @@ GET http://localhost:8080/pedidos/1
 - HTTP 200 OK
 
 - Devuelve que acabamos de hacer, en este el “id 1”.
+
+---
+
+#### 10.7 Ver todos los pedidos (ADMIN)
+
+**Endpoint**
+
+GET http://localhost:8080/pedidos/admin
+
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+
+- Devuelve que todos los pedidos del sistema.
 
 ---
