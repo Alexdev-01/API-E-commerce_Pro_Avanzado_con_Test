@@ -605,3 +605,18 @@ GET http://localhost:8080/pedidos
 - Devuelve los pedidos realizado del “cliente1”, se ve el que acabamos de hacer.
 
 ---
+
+#### 10.5 Comprobar el stock
+
+**Endpoint**
+
+GET http://localhost:8080/pedidos/1
+
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+
+- Devuelve que acabamos de hacer, en este el “id 1”.
+
+---
