@@ -590,3 +590,18 @@ GET http://localhost:8080/productos/1
 - El stock debería haberse reducido, de 10 a 8.
 
 ---
+
+#### 10.5 Comprobar el stock
+
+**Endpoint**
+
+GET http://localhost:8080/pedidos
+
+
+**Resultado obtenido**
+
+- HTTP 200 OK
+
+- Devuelve los pedidos realizado del “cliente1”, se ve el que acabamos de hacer.
+
+---
