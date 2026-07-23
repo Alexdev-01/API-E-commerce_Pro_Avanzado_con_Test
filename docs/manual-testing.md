@@ -635,3 +635,34 @@ GET http://localhost:8080/pedidos/admin
 - Devuelve que todos los pedidos del sistema.
 
 ---
+
+### 10. CRUD de Pedidos
+
+
+#### 10.1 Pruebas de errores
+
+**Endpoint**
+
+POST http://localhost:8080/pedidos
+
+**Headers**
+
+Authorization   -   `Bearer {{token}}`
+
+**Body**
+
+ RAW JSON
+ 
+```
+{
+    "items": []
+}
+```
+
+**Resultado obtenido**
+
+- HTTP 400 Bad Request.
+- No devuelve nada.
+
+
+---
